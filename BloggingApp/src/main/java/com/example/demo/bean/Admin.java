@@ -11,7 +11,9 @@ public class Admin {
 
 	@Id
 	private int userId;
+	@Size(min=3,message="Minimum 3 characters required")
 	private String adminName;
+	@Size(min=10,max=10,message="Minimum 10 number required")
 	private String adminContact;
 	
 }
