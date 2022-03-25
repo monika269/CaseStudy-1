@@ -41,7 +41,7 @@ public class UserController {
 	
 	//adding new user
 	@PostMapping("/users")
-	ResponseEntity<UserEntity> addNewUser(@RequestBody UserEntity user) {
+	ResponseEntity<UserEntity> addNewUser(@Valid @RequestBody UserEntity user) {
 		UserEntity newUser=userServ.addNewUser(user);
 		return new ResponseEntity<>(newUser,HttpStatus.CREATED);
 	}
@@ -67,7 +67,7 @@ public class UserController {
 	
 	//add admin
 	@PostMapping("/users/byRole/{id}")
-	ResponseEntity<Admin> addAdmin(@PathVariable int id, @RequestBody Admin admin){
+	ResponseEntity<Admin> addAdmin(@PathVariable int id,@Valid @RequestBody Admin admin){
 		if(!userRepo.getById(id).getRole().equals("Admin")) {
 			throw new UserNotFoundException("This user is not an admin"); 
 		}
